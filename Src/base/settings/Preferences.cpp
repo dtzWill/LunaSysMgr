@@ -886,13 +886,6 @@ bool Preferences::getPreferencesCallback(LSHandle *sh, LSMessage *message, void 
 		}
 	}
 
-	label = json_object_object_get(json, "sysUiEnableAppSwitchGestures");
-	if(label && !is_error(label)) {
-		if(prefObjPtr) {
-			prefObjPtr->m_sysUiEnableAppSwitchGestures = json_object_get_int(label);
-		}
-	}
-
 	label = json_object_object_get(json, "dualRSSI");
 	if (label && !is_error(label) && json_object_is_type(label, json_type_boolean)) {
 		if (prefObjPtr) {
