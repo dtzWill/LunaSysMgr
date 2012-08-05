@@ -68,6 +68,7 @@ Preferences::Preferences()
 	, m_sysUiSlideGestures(false)
 	, m_sysUiEnableAppSwitchGestures(false)
 	, m_sysUiStatusBarSlide(false)
+	, m_sysUiEnableStatusBarSearch(false)
 	, m_lockTimeout(0)
 	, m_lsHandle(0)
 	, m_imeEnabled(false)
@@ -571,6 +572,7 @@ bool Preferences::serverConnectCallback(LSHandle *sh, LSMessage *message, void *
 													   \"sysUiSlideGestures\", \
 													   \"sysUiEnableAppSwitchGestures\", \
 													   \"sysUiStatusBarSlide\", \
+													   \"sysUiEnableStatusBarSearch\", \
 													   \"airplaneMode\", \
 													   \"hideWANAlert\", \
 													   \"roamingIndicator\", \
@@ -866,6 +868,13 @@ bool Preferences::getPreferencesCallback(LSHandle *sh, LSMessage *message, void 
 
 		if (prefObjPtr)
 			prefObjPtr->m_sysUiStatusBarSlide = json_object_get_boolean(label);
+	}
+
+	label = json_object_object_get(json, "sysUiEnableStatusBarSearch");
+	if (label && !is_error(label)) {
+
+		if (prefObjPtr)
+			prefObjPtr->m_sysUiEnableStatusBarSearch = json_object_get_boolean(label);
 	}
 
 	label = json_object_object_get(json, "lockTimeout");
